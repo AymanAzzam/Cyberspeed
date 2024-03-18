@@ -1,7 +1,7 @@
 # Cyberspeed_Assesment
 This Assesment should include Docker, Kubernets, Minikube/AWS.
 
-## Build App Image
+## Build App
 1. Build the image
 ```bash
 docker build -t app:1.0 .
