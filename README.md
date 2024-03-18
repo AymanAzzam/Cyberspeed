@@ -26,20 +26,32 @@ docker push <docker-hub-username>/app:1.0
 ```bash
 minikube start
 ```
-2. Deploy the application pods
+2. Deploy the appplication and load balancer in development namespace
 ```bash
+kubectl apply -f ./k8s/namespace.yaml
 kubectl apply -f ./k8s/deployments/app-deployment.yaml
+kubectl apply -f ./k8s/services/app-load-balancer.yaml
 ```
-3. Deploy the load balancer
+3. Check the cluster dashboard
 ```bash
-kubectl apply -f ./k8s/services/app-deployment.yaml
+minikube dashboard
 ```
-4. Test the cluster
+4. Change kubernetes config to the development namespace
 ```bash
-minikube service app-service
+kubectl config set-context --current --namespace=development
 ```
-5. Check Application logs
+5. Test the cluster by accessing the load balancer
+```bash
+minikube service app-service --namespace development
+```
+6. Check Application logs
 ```bash
 kubectl get pods
 kubectl logs <pod-name>
+```
+7. Clean everything
+```bash
+kubectl delete -f ./k8s/services/app-load-balancer.yaml
+kubectl delete -f ./k8s/deployments/app-deployment.yaml
+kubectl delete -f ./k8s/namespace.yaml
 ```
