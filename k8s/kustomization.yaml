@@ -11,3 +11,6 @@ resources:
   - deployments/app-deployment.yaml
   - services/app-load-balancer.yaml
   - autoscaler/app-hpa.yaml
+
+  - deployments/web-deployment.yaml
+  - services/web-service.yaml
