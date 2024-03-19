@@ -20,6 +20,15 @@ spec:
           image: aymanazzam63/app:1.0
           ports:
             - containerPort: 8080
+          env:
+            - name: DB_HOST_NAME
+              value: "DB_HOST_NAME"
+            - name: DB_HOST_PORT
+              value: "DB_HOST_PORT"
+            - name: DB_HOST_USERNAME
+              value: "DB_HOST_USERNAME"
+            - name: DB_HOST_PASSWORD
+              value: "DB_HOST_PASSWORD"
           resources:
             limits:
               cpu: 500m
