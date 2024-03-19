@@ -18,7 +18,6 @@ Run pip install -r requirements.txt
 
 ## Step 5:
 # Expose port 80
-ENV APP_HOST="localhost"
 Expose 80
 
 ## Step 6:
