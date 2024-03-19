@@ -1,7 +1,13 @@
 from flask import Flask, request, render_template
 from flask.logging import create_logger
+import os
 import logging
+import mysql.connector
 
+host = os.environ['DB_HOST']
+port = os.environ['DB_PORT']
+user = os.environ['DB_USERNAME']
+password = os.environ['DB_PASSWORD']
 
 app = Flask(__name__)
 LOG = create_logger(app)
@@ -38,3 +44,8 @@ def result():
 
 if __name__ == "__main__":
     app.run(debug=True)
+
+    LOG.info("db-host = %s, db-port = %s, db-user = %s\n", host, port, user)
+    db = mysql.connector.connect(user=user, password=password, host=host, port=port)
+    LOG.info(db)
+    db.close()

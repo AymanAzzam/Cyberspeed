@@ -18,17 +18,24 @@ spec:
       containers:
         - name: app
           image: aymanazzam63/app:1.0
+          # imagePullPolicy: Always
           ports:
             - containerPort: 8080
           env:
-            - name: DB_HOST_NAME
-              value: "DB_HOST_NAME"
-            - name: DB_HOST_PORT
-              value: "DB_HOST_PORT"
-            - name: DB_HOST_USERNAME
-              value: "DB_HOST_USERNAME"
-            - name: DB_HOST_PASSWORD
-              value: "DB_HOST_PASSWORD"
+            - name: DB_HOST
+              value: $(MYSQL_SERVICE_SERVICE_HOST)
+            - name: DB_PORT
+              value: $(MYSQL_SERVICE_SERVICE_PORT)
+            - name: DB_USERNAME
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: username
+            - name: DB_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: password
           resources:
             limits:
               cpu: 500m
