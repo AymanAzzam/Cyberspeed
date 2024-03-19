@@ -17,7 +17,7 @@ spec:
         component: mysql
     spec:
       containers:
-      - image: mysql:latest
+      - image: aymanazzam63/mysql:1.0
         name: mysql
         env:
         - name: MYSQL_ROOT_PASSWORD
