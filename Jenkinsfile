@@ -3,6 +3,7 @@ pipeline {
         registry = "aymanazzam63/app"
         registryCredential = 'dockerhub_user'
         dockerImage = ''
+        KUBECONFIG = credentials('k8s_config')
     }
     agent any
     parameters {
