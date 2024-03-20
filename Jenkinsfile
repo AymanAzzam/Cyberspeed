@@ -13,7 +13,7 @@ pipeline {
             steps{
                 dir('./App/'){
                     script {
-                        dockerImage = docker.build(registry + ":3.0")
+                        dockerImage = docker.build(registry + ":${params.IMAGE_TAG}")
                     }
                 }
             }
@@ -29,7 +29,6 @@ pipeline {
         }
         stage('Cleaning up') {
             steps{
-                echo "image tag = ${params.IMAGE_TAG}"
                 powershell "docker rmi $registry:${params.IMAGE_TAG}"
             }
         }
