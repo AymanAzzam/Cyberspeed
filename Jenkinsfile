@@ -6,7 +6,7 @@ pipeline {
     }
     agent any
     parameters {
-        string(name: 'image-tag', defaultValue: '1.0', description: 'Image tag like 1.0 or 2.0, ...etc')
+        string(name: 'IMAGE_TAG', defaultValue: '1.0', description: 'Image tag like 1.0 or 2.0, ...etc')
     }
     stages {
         stage('Building the image') {
@@ -29,8 +29,8 @@ pipeline {
         }
         stage('Cleaning up') {
             steps{
-                echo "image tag = ${params.image-tag}"
-                powershell "docker rmi $registry:${params.image-tag}"
+                echo "image tag = ${params.IMAGE_TAG}"
+                powershell "docker rmi $registry:${params.IMAGE_TAG}"
             }
         }
     }
