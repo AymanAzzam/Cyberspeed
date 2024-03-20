@@ -30,6 +30,8 @@ pipeline {
         stage('Deploy the image into the cluster deployment') {
             steps{
                 dir('./helm/app'){
+                    powershell "kubectl config set-context --current --namespace=development"
+                    powershell "kubectl get pods"
                     powershell "helm upgrade --set imageTag=${params.IMAGE_TAG} app ."
                 }
             }
