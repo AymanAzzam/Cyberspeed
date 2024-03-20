@@ -9,11 +9,6 @@ pipeline {
         string(name: 'image-tag', defaultValue: '1.0', description: 'Image tag like 1.0 or 2.0, ...etc')
     }
     stages {
-        stage('Cloning our Git') {
-            steps {
-                git 'https://github.com/AymanAzzam/Cyberspeed_Assesment.git'
-            }
-        }
         stage('Building our image') {
             steps{
                 dir('./App/'){
