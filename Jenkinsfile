@@ -31,7 +31,6 @@ pipeline {
             steps{
                 dir('./helm/app'){
                     powershell "kubectl config set-context minikube --namespace=development"
-                    powershell "kubectl get nodes -v=10"
                     powershell "kubectl get pods"
                     powershell "helm upgrade --set imageTag=${params.IMAGE_TAG} app ."
                 }
