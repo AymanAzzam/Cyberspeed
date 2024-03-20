@@ -18,12 +18,21 @@ pipeline {
                 }
             }
         }
-        stage('Deploy the image') {
+        stage('Upload the image to docker hub') {
             steps{
                 script {
                         docker.withRegistry('', registryCredential ) {
                             dockerImage.push()
                         }
+                }
+            }
+        }
+        stage('Deploy the image into the cluster deployment') {
+            steps{
+                dir('./helm/app'){
+                    script {
+                            powershell "helm upgrade --set imageTag=${params.IMAGE_TAG} app ."
+                    }
                 }
             }
         }
