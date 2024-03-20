@@ -20,7 +20,8 @@ spec:
           image: aymanazzam63/app:1.0
           # imagePullPolicy: Always
           ports:
-            - containerPort: 8080
+            - name: http
+              containerPort: 8080
           env:
             - name: DB_HOST
               value: $(MYSQL_SERVICE_SERVICE_HOST)
@@ -43,3 +44,7 @@ spec:
             requests:
               cpu: 200m
               memory: "128Mi"
+          livenessProbe:
+            httpGet:
+              path: /
+              port: http
