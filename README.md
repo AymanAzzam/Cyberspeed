@@ -8,3 +8,4 @@ This project to deploy a Kubernetes cluster on Minikube. And automate app deploy
 5. [Helm Chart of App deployment](helm/README.md)
 
 ## Architecture
+![Alt text](Architecture.png)
