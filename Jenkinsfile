@@ -30,9 +30,7 @@ pipeline {
         stage('Deploy the image into the cluster deployment') {
             steps{
                 dir('./helm/app'){
-                    script {
-                            powershell "helm upgrade --set imageTag=${params.IMAGE_TAG} app ."
-                    }
+                    powershell "helm upgrade --set imageTag=${params.IMAGE_TAG} app ."
                 }
             }
         }
