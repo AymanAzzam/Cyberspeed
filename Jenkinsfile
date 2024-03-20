@@ -9,16 +9,16 @@ pipeline {
         string(name: 'image-tag', defaultValue: '1.0', description: 'Image tag like 1.0 or 2.0, ...etc')
     }
     stages {
-        stage('Building our image') {
+        stage('Building the image') {
             steps{
                 dir('./App/'){
                     script {
-                        dockerImage = docker.build(registry + ":${params.image-tag}")
+                        dockerImage = docker.build(registry + ":3.0")
                     }
                 }
             }
         }
-        stage('Deploy our image') {
+        stage('Deploy the image') {
             steps{
                 script {
                         docker.withRegistry('https://registry.hub.docker.com', registryCredential ) {
@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Cleaning up') {
             steps{
-                sh "docker rmi $registry:$BUILD_NUMBER"
+                sh "docker rmi $registry:3.0"
             }
         }
     }
