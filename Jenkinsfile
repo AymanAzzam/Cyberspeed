@@ -31,10 +31,8 @@ pipeline {
         stage('Deploy the image into the cluster deployment') {
             steps{
                 dir('./helm/app'){
-                    powerShell('''
-                        kubectl config set-context minikube --namespace=development
-                        helm upgrade --set imageTag=${params.IMAGE_TAG} app .
-                    ''')
+                    powershell "kubectl config set-context minikube --namespace=development"
+                    powershell "helm upgrade --set imageTag=${params.IMAGE_TAG} app ."
                 }
             }
         }
