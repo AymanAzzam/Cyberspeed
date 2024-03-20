@@ -29,7 +29,7 @@ pipeline {
         }
         stage('Cleaning up') {
             steps{
-                powershell "docker rmi $registry:3.0"
+                powershell "docker rmi $registry:${params.image-tag}"
             }
         }
     }
