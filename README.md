@@ -98,3 +98,13 @@ kubectl get pods
 ```bash
 kubectl delete -k ./k8s/
 ```
+
+## Helm Chart of App deployment
+1. Install the app helm chart
+```bash
+helm install --set imageTag="1.0" app  ./helm/app/
+```
+2. Deploy version 2 of the app
+```bash
+helm upgrade --set imageTag="2.0" app  ./helm/app/
+```

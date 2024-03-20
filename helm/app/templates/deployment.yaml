@@ -4,11 +4,6 @@ kind: Deployment
 metadata:
   name: app-deployment
   namespace: development
-  annotations: 
-    meta.helm.sh/release-name: app
-    meta.helm.sh/release-namespace: development
-  labels:
-    app.kubernetes.io/managed-by: Helm
 
 spec:
   replicas: 3
@@ -22,8 +17,8 @@ spec:
     spec:
       containers:
         - name: app
-          image: aymanazzam63/app:1.0
-          # imagePullPolicy: Always
+          image: aymanazzam63/app:{{ .Values.imageTag }}
+          imagePullPolicy: Always
           ports:
             - name: http
               containerPort: 8080
