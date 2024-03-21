@@ -9,3 +9,6 @@ This project to deploy a Kubernetes cluster on Minikube. And automate app deploy
 
 ## Architecture
 ![Alt text](Architecture.png)
+
+## Jnekins Pipeline
+![Alt text](Pipeline.png)
